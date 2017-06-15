@@ -36,6 +36,43 @@ Install the needed NodeJS Modules from the stories360-root directory, this will 
 > sudo npm install
 ```
 
+## Configuring NGINX (optional)
+
+If you're using NGINX, u have to reverse proxy the NodeJS and map it to an internal port (preconfigured 3020), so that your webserver can still listen to 80 and NodeJS can use an internal port
+
+...
+upstream stories360 {
+ server localhost:3020;
+}
+ 
+server {
+ listen 80;
+ server_name YOURURL www.YOURURL;
+ 
+ location / {
+  alias /path/to/stories360;
+  try_files $uri @stories360;
+ }
+ 
+ location /client {
+  alias /path/to/stories360/client;
+  try_files $uri @stories360;
+ }
+ 
+ location @stories360 {
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  proxy_set_header Host $proxy_host;
+  proxy_set_header X-NginX-Proxy true;
+  proxy_set_header Upgrade $http_upgrade;
+  proxy_set_header Connection "upgrade";
+ 
+  proxy_redirect off;
+  
+  proxy_pass http://stories360;
+ }
+}
+...
 
 ## Apply Sourcecode changes
 
