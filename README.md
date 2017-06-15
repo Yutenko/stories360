@@ -1,1 +1,95 @@
 # stories360
+
+Online Service for creating your own Virtual Reality Worlds just by uploading plain 2D and / or 360° images, wrapping it up with some background music for atmosphere
+
+## Getting Started
+
+The original service is running on a debian 8 system
+
+### Prerequisites
+
+You need to install
+
+* MySQL 5.6
+* NodeJS 6.0 or higher
+* wkhtmltox 12.x (creating PDFs from HTML on the fly)
+* a mail account for sending emails (no server SMTP, just gmail for instance)
+
+optional
+* NGINX as webserver (Apache2 will also just do fine)
+
+
+### Installing
+
+MySQL 
+on the CLI run the following command where username is your OWN username to MySQL, -p will ask you for the password for this user
+
+```
+> cd stories360
+> mysql -u username -p database_name < sqldump/webvr.sql
+```
+
+Install the needed NodeJS Modules from the stories360-root directory, this will install all modules from the package.json
+
+```
+> cd stories360
+> sudo npm install
+```
+
+
+## Apply Sourcecode changes
+
+Stories360 is written in ES6 and ES7 Syntax on the client side which babel will polyfill and transpile to ES5 and lower. You can configure webpack by editing webpack.config.js
+
+...
+> cd stories360
+> webpack
+...
+
+### Software-Architecture in Short
+
+* Stories360 is written with React for the View
+* material-ui for the precompiled css-Styles
+* NodeJS and Socket.io for realtime communication between the editor and the VR-Scene
+* every new VR Scene creates a new three ids (one for the editor, one for public sharing, one for private sharing)
+* Uploads go into /client/uploads/CUSTOMID
+* server creates multiple files from uploads (thumbnails for faster preview, you see from the source)
+
+### State-Management
+
+* Stories360 uses Reacts unidirectional dataflow through components for simple state changes
+* for more advanced UI / Model Changes, Mob-X is used with observer pattern and ESNext Decorators which observe the
+  functional state of a React Component Lifecycle
+  
+  ...
+  @observable for changing data-structures
+  @computed get is called by a property lookup on the observed data-structures
+  @action @action.bound for changing state from external files (bound just binds the this-reference to the mob-x Observer)
+  @Observer is used to decorate a Class as having data-strutures that contain observable data-structures
+
+  ...
+
+### Translation
+
+Translation file is in /client/lang/de.json for the german language, if you want to translate it, create a en.json and change the content, the menu for changing the languages can be implemented by yourself or you just change de.json with en.json and change the path in the /client/lang/translation.js
+
+```
+import DE from '../lang/YOURLANGUAGEFILENAME.json'
+
+var T = {
+ 'DE':DE,
+ 'EN':EN
+}
+
+export function translate (path) {
+ return T['EN'][path]
+}
+```
+
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
