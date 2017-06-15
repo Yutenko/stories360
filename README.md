@@ -19,7 +19,7 @@ optional
 * NGINX as webserver (Apache2 will also just do fine)
 
 
-### Installing
+### SETUP Database and NodeJS-Modules
 
 MySQL 
 on the CLI - run the following command where username is your OWN username to MySQL, -p will ask you for the password for this user,
