@@ -39,7 +39,7 @@ Install the needed NodeJS Modules from the stories360-root directory, this will 
 
 ## Configuring NGINX (optional)
 
-If you're using NGINX, you have to reverse proxy the NodeJS and map it to an internal port (preconfigured 3020), so that your webserver can still listen to 80 and NodeJS can use an internal port. Also you need to make sure to upgrade the http-Header, so that your Clients can upgrade from XHR-Longpolling to Websockets via ws://
+If you're using NGINX, you have to reverse proxy the NodeJS-Process and map it to an internal port (preconfigured 3020), so that your webserver can still listen to 80 and NodeJS can use an internal port. Also you need to make sure to upgrade the http-Header, so that your Clients can upgrade from XHR-Longpolling to Websockets via ws://
 
 ```
 upstream stories360 {
