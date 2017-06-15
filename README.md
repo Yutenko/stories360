@@ -40,7 +40,7 @@ Install the needed NodeJS Modules from the stories360-root directory, this will 
 
 If you're using NGINX, u have to reverse proxy the NodeJS and map it to an internal port (preconfigured 3020), so that your webserver can still listen to 80 and NodeJS can use an internal port
 
-...
+```
 upstream stories360 {
  server localhost:3020;
 }
@@ -72,16 +72,16 @@ server {
   proxy_pass http://stories360;
  }
 }
-...
+```
 
 ## Apply Sourcecode changes
 
 Stories360 is written in ES6 and ES7 Syntax on the client side which babel will polyfill and transpile to ES5 and lower. You can configure webpack by editing webpack.config.js
 
-...
+```
 > cd stories360
 > webpack
-...
+```
 
 ### Software-Architecture in Short
 
@@ -98,13 +98,12 @@ Stories360 is written in ES6 and ES7 Syntax on the client side which babel will 
 * for more advanced UI / Model Changes, Mob-X is used with observer pattern and ESNext Decorators which observe the
   functional state of a React Component Lifecycle
   
-  ...
+```
   @observable for changing data-structures
   @computed get is called by a property lookup on the observed data-structures
   @action @action.bound for changing state from external files (bound just binds the this-reference to the mob-x Observer)
   @Observer is used to decorate a Class as having data-strutures that contain observable data-structures
-
-  ...
+```
 
 ### Translation
 
