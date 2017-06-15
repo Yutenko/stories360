@@ -22,14 +22,15 @@ optional
 ### Installing
 
 MySQL 
-on the CLI run the following command where username is your OWN username to MySQL, -p will ask you for the password for this user
+on the CLI - run the following command where username is your OWN username to MySQL, -p will ask you for the password for this user,
+or just import from a Graphical Interface like phymyadmin
 
 ```
 > cd stories360
-> mysql -u username -p database_name < sqldump/webvr.sql
+> mysql -u username -p webvr < sqldump/webvr.sql
 ```
 
-Install the needed NodeJS Modules from the stories360-root directory, this will install all modules from the package.json
+Install the needed NodeJS Modules from the stories360-root directory, this will install all modules from the package.json-File
 
 ```
 > cd stories360
@@ -38,7 +39,7 @@ Install the needed NodeJS Modules from the stories360-root directory, this will 
 
 ## Configuring NGINX (optional)
 
-If you're using NGINX, u have to reverse proxy the NodeJS and map it to an internal port (preconfigured 3020), so that your webserver can still listen to 80 and NodeJS can use an internal port
+If you're using NGINX, you have to reverse proxy the NodeJS and map it to an internal port (preconfigured 3020), so that your webserver can still listen to 80 and NodeJS can use an internal port. Also you need to make sure to upgrade the http-Header, so that your Clients can upgrade from XHR-Longpolling to Websockets via ws://
 
 ```
 upstream stories360 {
@@ -76,7 +77,7 @@ server {
 
 ## Apply Sourcecode changes
 
-Stories360 is written in ES6 and ES7 Syntax on the client side which babel will polyfill and transpile to ES5 and lower. You can configure webpack by editing webpack.config.js
+Stories360 is written in ES6 and ES7 Syntax on the client side which babel will polyfill and transpile to ES5 and lower. You can configure webpack by editing webpack.config.js 
 
 ```
 > cd stories360
@@ -95,7 +96,7 @@ Stories360 is written in ES6 and ES7 Syntax on the client side which babel will 
 ### State-Management
 
 * Stories360 uses Reacts unidirectional dataflow through components for simple state changes
-* for more advanced UI / Model Changes, Mob-X is used with observer pattern and ESNext Decorators which observe the
+* for more advanced UI / Model Changes, Mob-X is used with observer pattern and ESNext Decorators which observes the
   functional state of a React Component Lifecycle
   
 ```
@@ -107,7 +108,7 @@ Stories360 is written in ES6 and ES7 Syntax on the client side which babel will 
 
 ### Translation
 
-Translation file is in /client/lang/de.json for the german language, if you want to translate it, create a en.json and change the content, the menu for changing the languages can be implemented by yourself or you just change de.json with en.json and change the path in the /client/lang/translation.js
+Translation file is in /client/lang/de.json for the german language, if you want to translate it, create an en.json for instance and change the content, the menu for changing the languages can be implemented by yourself or you just change de.json with en.json and change the path in the /client/lang/translation.js
 
 ```
 import DE from '../lang/YOURLANGUAGEFILENAME.json'
