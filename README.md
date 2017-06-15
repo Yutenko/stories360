@@ -89,7 +89,7 @@ Stories360 is written in ES6 and ES7 Syntax on the client side which babel will 
 * Stories360 is written with React for the View
 * material-ui for the precompiled css-Styles
 * NodeJS and Socket.io for realtime communication between the editor and the VR-Scene
-* every new VR Scene creates a new three ids (one for the editor, one for public sharing, one for private sharing)
+* every new VR Scene creates a three new ids (one for the editor, one for public sharing, one for private sharing)
 * Uploads go into /client/uploads/CUSTOMID
 * server creates multiple files from uploads (thumbnails for faster preview, you see from the source)
 
