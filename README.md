@@ -23,7 +23,7 @@ optional
 
 MySQL 
 on the CLI - run the following command where username is your OWN username to MySQL, -p will ask you for the password for this user,
-or just import from a Graphical Interface like phymyadmin
+or just import from a Graphical Interface like phpmyadmin
 
 ```
 > cd stories360
