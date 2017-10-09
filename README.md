@@ -75,6 +75,14 @@ server {
 }
 ```
 
+## Setup Mail Account and PDF 
+
+Stories360 sends mails and generates pdfs which users can download. You have to create your own Googlemail Account and change all the entries in the file server/mail.js
+For the PDF Creation you have to change the file server/pdf.js to your needs.
+
+Sorry, these files are hardcoded with text and urls. I didn't know someone is interested in using this service in other countries, otherwise it would be more friendly to configure outside the source. ;)
+
+
 ## Apply Sourcecode changes
 
 Stories360 is written in ES6 and ES7 Syntax on the client side which babel will polyfill and transpile to ES5 and lower. You can configure webpack by editing webpack.config.js 
